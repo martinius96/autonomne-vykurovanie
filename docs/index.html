@@ -93,10 +93,11 @@
 Projekt autonómne vykurovanie s mikrokontrolérom ESP8266 na vývojovej doske NodeMCU vznikol koncom roka 2017.
 Išlo vôbec o jeden z prvých projektov, ktorý som vytvoril so vzdialeným ovládaním pre mikrokontróler.
 Základom systému je responzívne webové rozhranie v šablóne ControlR, ktoré ponúka vizualizáciu údajov pre používateľa v dashboarde, grafoch.
-Webové rozhranie ponúka konfiguráciu logiky vykurovania. 
-Používateľ prostredníctvom formulárov dokáže vybrať konkrétny teplomer (miestnosť), podľa ktorého sa riadi logika so zadanou referenčnou (cieľovou) teplotou a hysterézou.
+Webové rozhranie ponúka konfiguráciu logiky vykurovania, nastavenie názvov miestností, kde sú teplotné senzory DS18B20 zapojené. 
+Používateľ prostredníctvom formulárov pre konfiguráciu vykurovania dokáže vybrať konkrétny teplomer. 
+Podľa získanej teploty z tohto teplomera sa vykonáva logika so zadanou referenčnou (cieľovou) teplotou a hysterézou.
 Hysterézu je možné nastavovať v rozsahu 0 až 5 °C s 0,25 °C krokom.
-Riadiť je možné výstup - KOTOL a výstup - OBEHOVÉ ČERPADLO.
+Riadiť je možné dva výstupy - KOTOL a OBEHOVÉ ČERPADLO.
 Systém využíva celkovo dva digitálne výstupy mikrokontroléra ESP8266, ktoré spínajú signál pre kotol a obehové čerpadlo.
 Logika je active-LOW pre active-LOW relé. V prípade stavu výstupu ZAP je na GPIO poslaná log. 0, v prípade VYP log. 1.
 </p>
