@@ -64,7 +64,7 @@
 <span class="label label-info">NodeMCU</span>	
 <hr>
 <center> 
-	<h2>4iadiaci hardvér - kompatibilné mikrokontroléry</h4>
+	<h4>Riadiaci hardvér - kompatibilné mikrokontroléry</h4>
 </center>	
 <hr>				
 <div class="row">
@@ -90,13 +90,25 @@
 </div>					
 <hr><center><h3>Autonómne vykurovanie - ESP8266</h3></center><hr>
 <p style="text-align: justify;">
-
+Projekt autonómne vykurovanie s mikrokontrolérom ESP8266 na vývojovej doske NodeMCU vznikol koncom roka 2017.
+Išlo vôbec o jeden z prvých projektov, ktorý som vytvoril so vzdialeným ovládaním pre mikrokontróler.
+Základom systému je responzívne webové rozhranie v šablóne ControlR, ktoré ponúka vizualizáciu údajov pre používateľa v dashboarde, grafoch.
+Webové rozhranie ponúka konfiguráciu logiky vykurovania. 
+Používateľ prostredníctvom formulárov dokáže vybrať konkrétny teplomer (miestnosť), podľa ktorého sa riadi logika so zadanou referenčnou (cieľovou) teplotou a hysterézou.
+Hysterézu je možné nastavovať v rozsahu 0 až 5 °C s 0,25 °C krokom.
+Kontrolovať je možné výstup - KOTOL a výstup - OBEHOVÉ ČERPADLO.
+Systém využíva dva výstupy mikrokontroléra ESP8266, ktoré spínajú signál pre kotol a obehové čerpadlo.
+ESP8266 je tak schopné nahradiť priamo izbový termostat v domácnosti.
 </p>
 <hr>
 <p style="text-align: justify;">
-
+S webovým rozhraním komunikuje v pravidelných intervaloch mikrokontróler ESP8266, ktorý odosiela dáta zo 6-tich senzorov Dallas DS18B20 na OneWire zbernici.
+Senzory merajú teplotu s 12-bitovým rozlíšením t.j. krok má 0,0625 °C. Zároveň pri spustení .php scriptu, ktorý preberá teploty je spustená aj logika termostatu pre kotol i obehové čerpadlo.
+Na základe operačného režimu logiky (AUTOMAT / MANUAL) odpovie mikrokontroléru webové rozhranie s reťazcom, ktorý ESP8266 načíta v odpovedi servera a tento stav výstupov aplikuje.
+Okrem údajov o výstupe sú v odpovedi servera obsiahnuté aj informácie o riadiacich teplotách a hysteréze pre kotol i obehové čerpadlo.
+V prípade výpadku konektivity na strane mikrokontroléra, alebo servera sa prepne mikrokontróler ESP8266 do offline režimu.
+Na základe posledne známych hodnôt zo servera riadi ESP8266 výstupy autonómne až do nadviazania spojenia s webserverom, kedy sa znova zosynchronizuje s logikou servera.
 </p>
-
 <hr>
 <center> 
      <h3>Screenshoty webového rozhrania pre projekt Autonómne vykurovanie</h3>
