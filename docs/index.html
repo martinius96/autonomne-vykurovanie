@@ -92,25 +92,27 @@
 <p style="text-align: justify;">
 Projekt autonómne vykurovanie s mikrokontrolérom ESP8266 na vývojovej doske NodeMCU vznikol koncom roka 2017.
 Išlo vôbec o jeden z prvých projektov, ktorý som vytvoril so vzdialeným ovládaním pre mikrokontróler.
-Základom systému je responzívne webové rozhranie v šablóne ControlR, ktoré ponúka vizualizáciu údajov pre používateľa v dashboarde, grafoch.
+Programová implementácia je navrhnutá pre mikrokontrólerové platformy od výrobcu Espressif Systems s WiFi konektivitou - ESP8266 na vývojových kitoch NodeMCU v2/v3, alebo Wemos D1 Mini. 
+Mikrokontróler ESP8266 má WiFi (2,4 GHz) konektivitu, ktorá je použitá pre prenos dát na vzdialené webové rozhranie cez HTTP, alebo HTTPS kanál.
+Na základe údajov z webového rozhrania ovláda ESP8266 dva relé výstupy typu active-LOW pripojené k GPIO.
+Riadiť je možné výstup pre KOTOL a pre OBEHOVÉ ČERPADLO. ESP8266 spína iba signalizačné relé, nerieši výkonovú reguláciu.
+Responzívne webové rozhranie v šablóne ControlR je základom systému logiky a vizualizácie dát používateľovi.
 Webové rozhranie ponúka konfiguráciu logiky vykurovania, nastavenie názvov miestností, kde sú teplotné senzory DS18B20 zapojené. 
-Používateľ prostredníctvom formulárov pre konfiguráciu vykurovania dokáže vybrať konkrétny teplomer. 
-Podľa získanej teploty z tohto teplomera sa vykonáva logika so zadanou referenčnou (cieľovou) teplotou a hysterézou.
-Hysterézu je možné nastavovať v rozsahu 0 až 5 °C s 0,25 °C krokom.
-Riadiť je možné dva výstupy - KOTOL a OBEHOVÉ ČERPADLO.
-Systém využíva celkovo dva digitálne výstupy mikrokontroléra ESP8266, ktoré spínajú signál pre kotol a obehové čerpadlo.
-Logika je active-LOW pre active-LOW relé. V prípade stavu výstupu ZAP je na GPIO poslaná log. 0, v prípade VYP log. 1.
+Používateľ prostredníctvom HTML formulárov pre konfiguráciu vykurovania dokáže vybrať konkrétny teplomer, podľa ktorého sa logika riadi. 
+Logika pracuje aj so zadanou referenčnou (cieľovou) teplotou a hysterézou.
+Hysterézu je možné nastavovať v rozsahu 0 až 5 °C s 0,25 °C krokom a je dostupná iba pre výstup KOTLA.
 </p>
 <hr>
 <p style="text-align: justify;">
 Nastavenie režimu (AUTOMAT / MANUAL), hysterézy, riadiaceho teplomera a riadiacej teploty je u kotla i obehového čerpadla nezávislé.
-Nastavenie obehového čerpadla nemá konfigurovateľnú hysterézu. V prípade nastavenia režimu na MANUAL je na neobmedzenú dobu možné nastaviť ZAP / VYP.
+V prípade nastavenia režimu na MANUAL je na neobmedzenú dobu možné nastaviť ZAP / VYP pre tento výstup.
 S webovým rozhraním komunikuje v pravidelných intervaloch mikrokontróler ESP8266, ktorý odosiela dáta zo 6-tich senzorov Dallas DS18B20 na OneWire zbernici.
 Senzory merajú teplotu s 12-bitovým rozlíšením t.j. krok má 0,0625 °C. Zároveň pri spustení .php scriptu, ktorý preberá teploty je spustená aj logika termostatu pre kotol i obehové čerpadlo.
 Na základe operačného režimu logiky (AUTOMAT / MANUAL) odpovie mikrokontroléru webové rozhranie s reťazcom, ktorý ESP8266 načíta v odpovedi servera a tento stav výstupov aplikuje.
 Okrem údajov o výstupe sú v odpovedi servera obsiahnuté aj informácie o riadiacich teplotách a hysteréze pre kotol i obehové čerpadlo.
 V prípade výpadku konektivity na strane mikrokontroléra, alebo servera sa prepne mikrokontróler ESP8266 do offline režimu.
 Na základe posledne známych hodnôt zo servera riadi ESP8266 výstupy autonómne až do nadviazania spojenia s webserverom, kedy sa znova zosynchronizuje s logikou servera.
+Systém je tak pripravený na krízové situácie, ktoré môžu pri prevádzke nastať.
 </p>
 <hr>
 <center> 
