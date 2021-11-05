@@ -94,7 +94,8 @@ Projekt autonómne vykurovanie s mikrokontrolérom ESP8266 na vývojovej doske N
 Išlo vôbec o jeden z prvých projektov, ktorý som vytvoril so vzdialeným ovládaním pre mikrokontróler.
 Programová implementácia je navrhnutá pre mikrokontrólerové platformy od výrobcu Espressif Systems s WiFi konektivitou - ESP8266 na vývojových kitoch NodeMCU v2/v3, alebo Wemos D1 Mini. 
 Mikrokontróler ESP8266 má WiFi (2,4 GHz) konektivitu, ktorá je použitá pre prenos dát na vzdialené webové rozhranie cez HTTP, alebo HTTPS kanál.
-Na základe údajov z webového rozhrania ovláda ESP8266 dva relé výstupy typu active-LOW pripojené k GPIO.
+ESP8266 má IPv4 adresu pridelenú cez DHCP, nevyužíva statické nastavenie pre WiFi adaptér.
+Na základe údajov z webového rozhrania ovláda ESP8266 dva relé výstupy typu active-LOW pripojené ku GPIO.
 Riadiť je možné výstup pre KOTOL a pre OBEHOVÉ ČERPADLO. ESP8266 spína iba signalizačné relé, nerieši výkonovú reguláciu.
 Responzívne webové rozhranie v šablóne ControlR je základom systému logiky a vizualizácie dát používateľovi.
 Webové rozhranie ponúka konfiguráciu logiky vykurovania, nastavenie názvov miestností, kde sú teplotné senzory DS18B20 zapojené. 
